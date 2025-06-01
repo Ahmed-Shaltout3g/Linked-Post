@@ -1,0 +1,57 @@
+@if (!profileLoading) {
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-6 mx-auto py-3 px-3 px-md-4 bg-white shadow-sm  row">
+                <div class="col-md-6 position-relative">
+                    <img [src]="profile.photo" alt="Profile Picture" class="me-4 w-100 " />
+                    <div routerLink="/upload-image" class="position-absolute top-0 start-0">
+                        <i class="fa-regular fa-pen-to-square m-3 bg-light p-2 rounded-circle cr-pointer"></i>
+                    </div>
+                </div>
+                <div class=" col-md-6 py-3">
+                    <h2>{{ profile.name | titlecase }}</h2>
+                    <p><strong>Email:</strong> {{ profile.email }}</p>
+                    <p><strong>Date of Birth:</strong> {{ profile.dateOfBirth }}</p>
+                    <p><strong>Gender:</strong> {{ profile.gender }}</p>
+                    <p><strong>Account Created:</strong> {{ profile.createdAt | date: 'fullDate' }}</p>
+                    <div class="d-flex ">
+                        <button class="btn btn-primary btn-sm me-2 w-50 " #showMyPosts>my posts</button>
+                        <button routerLink="/add-post" class="btn btn-primary btn-sm  w-50">add post</button>
+                        
+                    </div>
+                    <button (click)="signOut()" class="btn btn-sm btn-danger w-100 my-2">Sign out</button>
+                </div>
+            </div>
+        </div>
+
+        @defer (on interaction(showMyPosts)) {
+        <app-grid-posts [posts]="myPosts" [isLoading]="isLoading" [inProfile]="true" />
+        }
+    </div>
+</section>
+}
+@else {
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-6 mx-auto py-3 px-3 px-md-4 bg-white shadow-sm row">
+                <div class="col-md-6">
+                    <img src="./assets/loadingImage.jfif" alt="loading image" class=" me-3 w-100" />
+                </div>
+                <div class="col-md-6 py-3">
+                    <p style="background-color: gray; height: 15px; width: 120px;" class=" my-2"></p>
+                    <p style="background-color: gray; height: 15px; width: 230px;" class=" my-2"></p>
+                    <p style="background-color: gray; height: 15px; width: 220px;" class=" my-2"></p>
+                    <p style="background-color: gray; height: 15px; width: 150px;" class=" my-2"></p>
+                    <p style="background-color: gray; height: 15px; width: 200px;" class=" my-2"></p>
+                    <div class="d-flex">
+                        <p style="background-color: gray; height: 15px; width: 50px;" class=" my-2 ms-2"></p>
+                        <p style="background-color: gray; height: 15px; width: 60px;" class=" my-2"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+}

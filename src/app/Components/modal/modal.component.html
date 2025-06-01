@@ -1,0 +1,32 @@
+<!-- Button trigger modal -->
+@if (inPosts) {
+<button type="button" class="bg-transparent py-2 border-1 border border-black rounded-5 w-100 px-3 text-start"
+    data-bs-toggle="modal" [attr.data-bs-target]="'#' + modalId">
+    What's on your mind
+</button>
+}@else {
+@if (modelTitle == 'upload pic') {
+<i class="fa-regular fa-pen-to-square m-3 bg-light p-2 rounded-circle cr-pointer" data-bs-toggle="modal" [attr.data-bs-target]="'#' + modalId"></i>
+}@else {
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#' + modalId">
+    {{buttonContent}}
+</button>
+}
+}
+
+
+<!-- Modal -->
+<div class="modal fade" [id]="modalId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{modelTitle}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ng-content />
+            </div>
+
+        </div>
+    </div>
+</div>

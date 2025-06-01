@@ -1,0 +1,47 @@
+:root {
+    --mainColor: #0d6efd;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border: solid 1px var(--mainColor);
+}
+
+
+section {
+    min-height: 100vh;
+}
+
+.fs-small {
+    font-size: 14px;
+}
+
+.fs-xsmall {
+    font-size: 12px;
+}
+
+.cr-pointer {
+    transition: all 0.3s;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.fs-big {
+    font-size: 2.5rem;
+}
+
+@media screen and (min-width:0px) and (max-width:600px) {
+    .fs-big {
+        font-size: 1.75rem;
+    }
+}
+
+.overflow-y-special::-webkit-scrollbar {
+    display: none;
+}
+.box-image 
+{
+    min-height: 300px;
+}

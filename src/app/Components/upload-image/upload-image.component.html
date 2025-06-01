@@ -1,0 +1,24 @@
+<section class="bg-light py-5  px-3 px-md-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-6 mx-auto  py-5 px-3 px-md-5 bg-white shadow-sm">
+                <h3 class="h5 fw-semibold text-primary mb-4 ">Upload profile picture</h3>
+                <form>
+                    <div class="upload-container" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
+                        (drop)="onDrop($event)">
+                        <input type="file" id="fileImage" accept="image/*" (change)="onFileSelected($event)" hidden />
+                        <label for="fileImage" class="upload-label  w-100 h-100 py-5">
+                            <img width="64" height="64" src="https://img.icons8.com/wired/64/add-image.png" alt="add-image" />
+                            <p>Drag & Drop an image here or <span>browse</span></p>
+                            @if (selectedFile) {
+                                <p class="fs-xsmall">Selected File: {{selectedFile.name}}</p>
+                            }
+                        </label>
+                    </div>
+                    <button (click)="uploadImage()" type="button" class="btn btn-primary my-3 fs-6 fw-medium px-3 "> @if (loading) {... Loading}@else {Upload} </button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</section>

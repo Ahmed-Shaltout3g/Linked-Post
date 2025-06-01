@@ -1,0 +1,102 @@
+<section class="bg-light  py-5  px-3 px-md-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-6 mx-auto py-5 px-3 px-md-5 bg-white shadow-sm">
+                <h3 class="h5 fw-semibold text-primary mb-4 ">Register now</h3>
+                <form [formGroup]="registerForm" (ngSubmit)="register()">
+                    <div class="my-3">
+                        <input formControlName="name" class="form-control py-2  bg-light" type="text"
+                            placeholder="Type Your Name">
+                        @if ((registerForm.get('name')?.touched || registerForm.get('name')?.dirty) &&
+                        registerForm.get('name')?.errors){
+                        @if(registerForm.get('name')?.getError('required')){<p
+                            class="pt-1 fs-small text-danger fw-medium"><i
+                                class="fa-solid fa-circle-exclamation me-1"></i>Name is required</p>}
+                        @if(registerForm.get('name')?.getError('minlength')){<p
+                            class="pt-1 fs-small text-danger fw-medium"><i
+                                class="fa-solid fa-circle-exclamation me-1"></i>Name must be 2 letters at least</p>}
+                        @if(registerForm.get('name')?.getError('maxlength')){<p
+                            class="pt-1 fs-small text-danger fw-medium"><i
+                                class="fa-solid fa-circle-exclamation me-1"></i>Name must be 30 letters at most</p>}
+                        }
+                    </div>
+                    <div class="my-3">
+                        <input formControlName="email" class="form-control py-2 bg-light" type="email"
+                            placeholder="Type Your Email">
+                        @if ((registerForm.get('email')?.touched || registerForm.get('email')?.dirty) &&
+                        registerForm.get('email')?.errors){
+                        @if(registerForm.get('email')?.getError('required')){<p
+                            class="pt-1 fs-small text-danger fw-medium"><i
+                                class="fa-solid fa-circle-exclamation me-1"></i>Email is required</p>}
+                        @if(registerForm.get('email')?.getError('email')){<p
+                            class="pt-1 fs-small text-danger fw-medium"><i
+                                class="fa-solid fa-circle-exclamation me-1"></i>Invalid Email</p>}
+                        }
+                    </div>
+                    <div class="my-3">
+                        <input formControlName="password" class="form-control py-2 bg-light" type="password"
+                            placeholder="Type Your Password">
+                        @if ((registerForm.get('password')?.touched || registerForm.get('password')?.dirty) &&
+                        registerForm.get('password')?.errors){
+                        @if(registerForm.get('password')?.getError('required')){<p
+                            class="pt-1 fs-small text-danger fw-medium"><i
+                                class="fa-solid fa-circle-exclamation me-1"></i>Password is required</p>}
+                        @if(registerForm.get('password')?.getError('pattern')){<p
+                            class="pt-1 fs-small text-danger fw-medium"><i
+                                class="fa-solid fa-circle-exclamation me-1"></i> <small>
+                                Password must be at least 8 characters long and include:
+                                - One uppercase letter (A-Z),
+                                - One lowercase letter (a-z),
+                                - One number (0-9),
+                                - One special character (#?!$%^&*-).
+                            </small></p>}
+                        }
+                    </div>
+                    <div class="my-3">
+                        <input formControlName="rePassword" class="form-control py-2 bg-light" type="password"
+                            placeholder="Confirm Password">
+
+                        @if ( (registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty) &&
+                        registerForm.getError('mismatch')) {
+                        <p class="pt-1 fs-small text-danger fw-medium"><i
+                                class="fa-solid fa-circle-exclamation me-1"></i>Confirm Password must match password</p>
+                        }
+                    </div>
+                    <div class="my-3">
+                        <input formControlName="dateOfBirth" class="form-control py-2  bg-light" type="date"
+                            placeholder="Select Date">
+                        @if ((registerForm.get('dateOfBirth')?.touched || registerForm.get('dateOfBirth')?.dirty) &&
+                        registerForm.get('dateOfBirth')?.errors){
+                        @if(registerForm.get('dateOfBirth')?.getError('required')){<p
+                            class="pt-1 fs-small text-danger fw-medium"><i
+                                class="fa-solid fa-circle-exclamation me-1"></i>Date of birth is required</p>}
+                        }
+                    </div>
+
+
+                   <div class="my-3 py-2">
+                    <div class="d-flex ">
+                        <div class="d-flex me-3">
+                            <input formControlName="gender" type="radio" name="gender" id="male" value="male">
+                            <label class="fw-semibold ms-1" for="male">Male</label>
+                        </div>
+                        <div class="d-flex">
+                            <input formControlName="gender" type="radio" name="gender" id="female" value="female">
+                            <label class="fw-semibold ms-1" for="female">Female</label>
+                        </div>
+                    </div>
+                        @if ((registerForm.get('gender')?.touched || registerForm.get('gender')?.dirty) &&
+                        registerForm.get('gender')?.errors){
+                        @if(registerForm.get('gender')?.getError('required')){<p
+                            class="pt-1 fs-small text-danger fw-medium"><i
+                                class="fa-solid fa-circle-exclamation me-1"></i>Gender is required</p>}
+                        }
+                   </div>
+                    <button type="submit" class="btn btn-primary my-3  fs-6 fw-medium px-3 ">@if (loading) {... Loading}@else {Sign up} </button>
+                </form>
+                <p class=" fw-medium fs-6">Have an account? <a routerLink="/login" class="text-primary ms-1">Sign In</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

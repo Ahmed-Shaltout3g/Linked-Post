@@ -1,0 +1,15 @@
+<nav class="py-2 fixed-top bg-white">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 routerLink="/" class="h4 fw-semibold text-primary pt-1 cr-pointer">Linked Posts</h1>
+        @if (isLoggin) {
+            <img routerLink="/profile" class="rounded-circle cr-pointer" style="width: 30px; height: 30px;"
+            [src]="image ? image:'./assets/profile-image.svg'" alt="profile image">
+        } 
+        @else {
+            <div class="d-flex">
+                <a  class="mx-1 px-3 btn-sm  btn btn-outline-primary" routerLink="/register">CREATE ACCOUNT</a>
+                <a  class="mx-1 px-3 btn-sm  btn btn-primary" routerLink="/login">LOGIN</a>
+            </div>
+        }
+    </div>
+</nav>

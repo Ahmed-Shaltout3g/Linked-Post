@@ -1,0 +1,56 @@
+@if (isLoading) {
+<app-loading-posts />
+}@else {
+@for (post of posts; track $index) {
+<div class="row mt-3 ">
+    <div class="col-sm-12 col-md-8 col-lg-6 mx-auto py-3 px-3 px-md-4 bg-white shadow-sm">
+        <div>
+            <div class="post mb-4">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <img class="rounded-circle" style="width: 30px; height: 30px;" [src]="post.user.photo"
+                            [alt]="post.user.name">
+                        <div class="ms-3">
+                            <p class="fw-medium my-0">{{post.user.name}}</p>
+                            <p class="text-muted fw-medium my-0 fs-small">{{post.createdAt | date}}</p>
+                        </div>
+                    </div>
+                    @if (inProfile) {
+                    <div class="d-flex align-items-start">
+                        <p (click)="removePost(post.id)" class="btn btn-danger btn-sm me-2"><i
+                                class="fa-regular fa-trash-can"></i></p>
+
+                        <i [routerLink]="['/update-post', post.id]"
+                            class="fa-regular fa-pen-to-square cr-pointer btn btn-primary btn-sm p-2"></i>
+                    </div>
+                    }
+
+                </div>
+                <p class="fw-medium fs-small my-3">{{post.body}}</p>
+                @if (post.image) {
+                <div class="box-image">
+                    <img [src]="post.image" class="w-100 rounded-1 " [alt]="post.body">
+                </div>
+                }
+                <p #showComments class="fs-small text-center pt-3 text-end cr-pointer">Show Comments
+                </p>
+
+                @defer (on interaction(showComments)) {
+                <app-comments [postId]="post.id" [inProfile]="inProfile" />
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+}
+}
+
+@if(loading){
+<section style="background-color: rgba(0, 0, 0, 0.7);"
+    class="w-100 d-flex justify-content-center align-items-center position-fixed top-0 bottom-0 start-0 end-0">
+    <div class="spinner-border text-primary h1" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</section>
+}
